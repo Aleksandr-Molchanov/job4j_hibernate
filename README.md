@@ -1,4 +1,4 @@
-# job4j_threads
+# job4j_hibernate
 Репозиторий предназначен для выполнения заданий блока hibernate на курсе job4j
 ### Сборка и запуск
 для сборки: mvn install
