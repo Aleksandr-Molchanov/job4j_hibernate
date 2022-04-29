@@ -13,3 +13,19 @@ CREATE TABLE if not exists brands_models(
     models_id int references models(id),
     brand_id int references brands(id)
 );
+
+CREATE TABLE if not exists books (
+    id SERIAL PRIMARY KEY,
+    name TEXT
+);
+
+CREATE TABLE if not exists authors (
+    id SERIAL PRIMARY KEY,
+    name TEXT
+);
+
+CREATE TABLE if not exists books_authors (
+    id serial primary key,
+    book_id int references books(id),
+    authors_id int references authors(id)
+);
