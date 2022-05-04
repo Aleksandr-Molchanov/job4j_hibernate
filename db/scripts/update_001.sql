@@ -25,7 +25,6 @@ CREATE TABLE if not exists authors (
 );
 
 CREATE TABLE if not exists books_authors (
-    id serial primary key,
     book_id int references books(id),
     authors_id int references authors(id)
 );
