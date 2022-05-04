@@ -1,11 +1,12 @@
-CREATE TABLE if not exists models (
+CREATE TABLE if not exists brands (
     id SERIAL PRIMARY KEY,
     name TEXT
 );
 
-CREATE TABLE if not exists brands (
+CREATE TABLE if not exists models (
     id SERIAL PRIMARY KEY,
-    name TEXT
+    name TEXT,
+    brand_id int references brands(id)
 );
 
 CREATE TABLE if not exists brands_models(
