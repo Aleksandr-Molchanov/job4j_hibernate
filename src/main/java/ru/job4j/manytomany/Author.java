@@ -43,11 +43,11 @@ public class Author {
             return false;
         }
         Author author = (Author) o;
-        return id == author.id;
+        return id == author.id && Objects.equals(name, author.name);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id);
+        return Objects.hash(id, name);
     }
 }

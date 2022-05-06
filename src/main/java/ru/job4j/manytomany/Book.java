@@ -56,11 +56,13 @@ public class Book {
             return false;
         }
         Book book = (Book) o;
-        return id == book.id;
+        return id == book.id
+                && Objects.equals(name, book.name)
+                && Objects.equals(authors, book.authors);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id);
+        return Objects.hash(id, name, authors);
     }
 }
