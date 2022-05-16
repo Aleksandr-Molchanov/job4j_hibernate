@@ -30,7 +30,7 @@ CREATE TABLE if not exists books_authors (
     authors_id int references authors(id)
 );
 
-CREATE TABLE if not exists authors (
+CREATE TABLE if not exists candidates (
     id SERIAL PRIMARY KEY,
     name TEXT,
     experience TEXT,
