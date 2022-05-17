@@ -7,6 +7,8 @@ import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.query.Query;
 
+import java.util.List;
+
 public class HbmRun {
     public static void main(String[] args) {
         final StandardServiceRegistry registry = new StandardServiceRegistryBuilder()
@@ -19,11 +21,24 @@ public class HbmRun {
             Candidate one = Candidate.of("Alex", "1 year", 10000);
             Candidate two = Candidate.of("Nikolay", "3 years", 30000);
             Candidate three = Candidate.of("Nikita", "10 years", 100000);
-
             session.save(one);
             session.save(two);
             session.save(three);
 
+            Vacancy vacancy1 = Vacancy.of("Junior", "Description1");
+            Vacancy vacancy2 = Vacancy.of("Middle", "Description2");
+            Vacancy vacancy3 = Vacancy.of("Senior", "Description3");
+            session.save(vacancy1);
+            session.save(vacancy2);
+            session.save(vacancy3);
+
+            DBVacancy db = DBVacancy.of("base1");
+            db.setVacancies(List.of(vacancy1, vacancy2, vacancy3));
+            session.save(db);
+
+            one.setDbVacancy(db);
+
+            /*
             Query queryAll = session.createQuery("from Candidate");
             for (Object c : queryAll.list()) {
                 System.out.println(c);
@@ -51,6 +66,15 @@ public class HbmRun {
                             + "from Candidate s where s.id = :fId")
                     .setParameter("fId", 1)
                     .executeUpdate();
+             */
+
+            Candidate rsl = session.createQuery(
+                    "select distinct c from Candidate c "
+                            + "join fetch c.dbVacancy db "
+                            + "join fetch db.vacancies v "
+                            + "where c.id = :cId", Candidate.class
+            ).setParameter("cId", 5).uniqueResult();
+            System.out.println(rsl);
 
             session.getTransaction().commit();
             session.close();

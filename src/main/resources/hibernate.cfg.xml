@@ -15,5 +15,7 @@
         <property name="hibernate.dialect">org.hibernate.dialect.PostgreSQL10Dialect</property>
 
         <mapping class="ru.job4j.hql.Candidate" />
+        <mapping class="ru.job4j.hql.Vacancy" />
+        <mapping class="ru.job4j.hql.DBVacancy" />
     </session-factory>
 </hibernate-configuration>
