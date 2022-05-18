@@ -1,38 +1,7 @@
-CREATE TABLE if not exists brands (
-    id SERIAL PRIMARY KEY,
-    name TEXT
-);
-
-CREATE TABLE if not exists models (
-    id SERIAL PRIMARY KEY,
-    name TEXT,
-    brand_id int references brands(id)
-);
-
-CREATE TABLE if not exists brands_models(
-    id serial primary key,
-    models_id int references models(id),
-    brand_id int references brands(id)
-);
-
-CREATE TABLE if not exists books (
-    id SERIAL PRIMARY KEY,
-    name TEXT
-);
-
-CREATE TABLE if not exists authors (
-    id SERIAL PRIMARY KEY,
-    name TEXT
-);
-
-CREATE TABLE if not exists books_authors (
-    book_id int references books(id),
-    authors_id int references authors(id)
-);
-
-CREATE TABLE if not exists candidates (
-    id SERIAL PRIMARY KEY,
-    name TEXT,
-    experience TEXT,
-    salary int
+CREATE TABLE IF NOT EXISTS orders (
+    id serial,
+    name VARCHAR(50),
+    description VARCHAR(50),
+    created timestamp,
+    PRIMARY KEY (id)
 );
