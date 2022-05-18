@@ -40,7 +40,7 @@ public class OrdersStoreTest {
     }
 
     @After
-    public void dropTable() throws SQLException{
+    public void dropTable() throws SQLException {
         pool.getConnection().prepareStatement("DROP TABLE orders").executeUpdate();
     }
 
